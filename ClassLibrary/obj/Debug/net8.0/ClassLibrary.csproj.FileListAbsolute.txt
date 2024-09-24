@@ -9,3 +9,4 @@ C:\Users\sLarsson\Desktop\C#\c-sharp_moment3\ClassLibrary\obj\Debug\net8.0\Class
 C:\Users\sLarsson\Desktop\C#\c-sharp_moment3\ClassLibrary\obj\Debug\net8.0\refint\ClassLibrary.dll
 C:\Users\sLarsson\Desktop\C#\c-sharp_moment3\ClassLibrary\obj\Debug\net8.0\ClassLibrary.pdb
 C:\Users\sLarsson\Desktop\C#\c-sharp_moment3\ClassLibrary\obj\Debug\net8.0\ref\ClassLibrary.dll
+C:\Users\sLarsson\Desktop\C#\c-sharp_moment3\ClassLibrary\obj\Debug\net8.0\ClassLibrary.sourcelink.json

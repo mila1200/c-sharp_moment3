@@ -16,3 +16,4 @@ C:\Users\sLarsson\Desktop\C#\c-sharp_moment3\Guestbook\bin\Debug\net8.0\ClassLib
 C:\Users\sLarsson\Desktop\C#\c-sharp_moment3\Guestbook\bin\Debug\net8.0\ClassLibrary.pdb
 C:\Users\sLarsson\Desktop\C#\c-sharp_moment3\Guestbook\obj\Debug\net8.0\Guestbook.csproj.AssemblyReference.cache
 C:\Users\sLarsson\Desktop\C#\c-sharp_moment3\Guestbook\obj\Debug\net8.0\Guestbook.csproj.Up2Date
+C:\Users\sLarsson\Desktop\C#\c-sharp_moment3\Guestbook\obj\Debug\net8.0\Guestbook.sourcelink.json
