@@ -5,6 +5,7 @@ namespace GuestbookApp
 
 class Program
 {
+
     static void Main(string[] args)
     {
         Menu menu = new Menu("1. Skriv i gästboken", "2. Ta bort inlägg", "3. Avsluta");
@@ -20,8 +21,13 @@ class Program
         {
             Clear();
             WriteLine("Vänligen ange ditt namn:");
+            string name = ReadLine();
+
+            WriteLine("Vänligen skriv ditt meddelande:");
+            string userInput = ReadLine();
             
-            //hänvisa till metoden för att skriva inlägg
+            //lägger till namn och inlägg till listan
+            GuestbookInput.AddInput(name, userInput);
         }
         
     }
