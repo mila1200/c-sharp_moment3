@@ -6,6 +6,7 @@ namespace GuestbookApp
     {
         static void Main(string[] args)
         {
+            GuestbookInput.guestbookInputs = Storage.LoadInputFromJson("myGuestbookInputs.json");
             //boolean för att kunna loopa applikationen
             bool validInput = false;
 
@@ -19,12 +20,12 @@ namespace GuestbookApp
                     WriteLine(menu.option1);
                     WriteLine($"{menu.option2}\n");
                     WriteLine($"{menu.option3}\n");
-                    WriteLine("Vänligen välj ett alternativ (1-3):");
+                    WriteLine($"Befintliga inlägg:");
 
                     int index = 1;
                     foreach (var entry in GuestbookInput.guestbookInputs)
                     {
-                        WriteLine($"{index} {entry.Name} - {entry.UserInput}\n");
+                        WriteLine($"[{index}] {entry.Name} - {entry.UserInput}\n");
                         index++;
                     }
 
@@ -56,11 +57,12 @@ namespace GuestbookApp
 
                         //lägger till namn och inlägg till listan
                         GuestbookInput.AddInput(name, userInput);
-
+                        Storage.SaveInputToJson(GuestbookInput.guestbookInputs, "myGuestbookInputs.json");
                     }
                     else if (input == "2")
                     {
-
+                        Clear();
+                        
                     }
                     //avslutar while-loop vid korrekt input
                     validInput = true;
