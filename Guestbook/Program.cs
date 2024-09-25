@@ -6,51 +6,70 @@ namespace GuestbookApp
     {
         static void Main(string[] args)
         {
-            try
+            //boolean för att kunna loopa applikationen
+            bool validInput = false;
+
+            //while-loop för att loopa appen vid felaktig input
+            while (!validInput)
             {
-                Menu menu = new Menu("1. Skriv i gästboken", "2. Ta bort inlägg", "3. Avsluta");
-                WriteLine("Välkommen till Mikaels gästbok!\n");
-                WriteLine(menu.option1);
-                WriteLine($"{menu.option2}\n");
-                WriteLine($"{menu.option3}\n");
-                WriteLine("Vänligen välj ett alternativ (1-3):");
-
-                string? input = ReadLine();
-
-                if (string.IsNullOrWhiteSpace(input))
+                try
                 {
-                    throw new ArgumentNullException();
-                }
+                    Menu menu = new Menu("1. Skriv i gästboken", "2. Ta bort inlägg", "3. Avsluta");
+                    WriteLine("Välkommen till Mikaels gästbok!\n");
+                    WriteLine(menu.option1);
+                    WriteLine($"{menu.option2}\n");
+                    WriteLine($"{menu.option3}\n");
+                    WriteLine("Vänligen välj ett alternativ (1-3):");
 
-                if (input == "1")
-                {
-                    Clear();
-                    WriteLine("Vänligen ange ditt namn:");
-                    string? name = ReadLine();
-
-                    if (string.IsNullOrWhiteSpace(name))
+                    int index = 1;
+                    foreach (var entry in GuestbookInput.guestbookInputs)
                     {
-                        throw new ArgumentNullException("Du måste ange ett namn.");
+                        WriteLine($"{index} {entry.Name} - {entry.UserInput}\n");
+                        index++;
                     }
 
-                    WriteLine("Vänligen skriv ditt meddelande:");
-                    string? userInput = ReadLine();
+                    string? input = ReadLine();
 
-                    if (string.IsNullOrWhiteSpace(userInput))
+                    if (string.IsNullOrWhiteSpace(input))
                     {
-                        throw new ArgumentNullException("Du måste ange ett meddelande.");
+                        throw new ArgumentNullException();
                     }
 
-                    //lägger till namn och inlägg till listan
-                    GuestbookInput.AddInput(name, userInput);
-                }
+                    if (input == "1")
+                    {
+                        Clear();
+                        WriteLine("Vänligen ange ditt namn:");
+                        string? name = ReadLine();
 
-            }
-            catch (ArgumentNullException ex)
-            {
-                WriteLine($"Det uppstod ett fel. Felet beror på: {ex.Message}");
+                        if (string.IsNullOrWhiteSpace(name))
+                        {
+                            throw new ArgumentNullException("Du måste ange ett namn.");
+                        }
+
+                        WriteLine("Vänligen skriv ditt meddelande:");
+                        string? userInput = ReadLine();
+
+                        if (string.IsNullOrWhiteSpace(userInput))
+                        {
+                            throw new ArgumentNullException("Du måste ange ett meddelande.");
+                        }
+
+                        //lägger till namn och inlägg till listan
+                        GuestbookInput.AddInput(name, userInput);
+
+                    }
+                    else if (input == "2")
+                    {
+
+                    }
+                    //avslutar while-loop vid korrekt input
+                    validInput = true;
+                }
+                catch (ArgumentNullException ex)
+                {
+                    WriteLine($"Det uppstod ett fel. Felet beror på: {ex.Message}");
+                }
             }
         }
-
     }
 }

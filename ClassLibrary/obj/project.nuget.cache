@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "oZiLcraNy3Y=",
+  "dgSpecHash": "P9d8YPj+v+w=",
   "success": true,
   "projectFilePath": "C:\\Users\\sLarsson\\Desktop\\C#\\c-sharp_moment3\\ClassLibrary\\ClassLibrary.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\sLarsson\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
   "logs": []
 }

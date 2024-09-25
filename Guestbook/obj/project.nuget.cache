@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "WpELtU28zfI=",
+  "dgSpecHash": "6LNDAstJDpE=",
   "success": true,
   "projectFilePath": "C:\\Users\\sLarsson\\Desktop\\C#\\c-sharp_moment3\\Guestbook\\Guestbook.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\sLarsson\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
   "logs": []
 }
