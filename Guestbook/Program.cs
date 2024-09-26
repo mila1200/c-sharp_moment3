@@ -85,17 +85,22 @@ namespace GuestbookApp
                         //försöker omvandla input från string till int. Om det lyckas läggs nya värdet i inputIdToDelete, annars felhantering.
                         if (int.TryParse(deleteInput, out int inputIdToDelete))
                         {
-                            GuestbookInput.RemoveAt(inputIdToDelete - 1);
+                            if (inputIdToDelete <= GuestbookInput.guestbookInputs.Count)
+                            {
+                                GuestbookInput.RemoveAt(inputIdToDelete - 1);
 
                             //sparar ner nya listan till json
                             Storage.SaveInputToJson(GuestbookInput.guestbookInputs, "myGuestbookInputs.json");
 
                             WriteLine($"Inlägg nummer {inputIdToDelete} är borttaget. Tryck på valfri tangent för att återgå till huvudmenyn.");
                             ReadKey();
-                        }
-                        else
-                        {
-                            WriteLine("Du måste ange ett korrekt nummer på inlägget du vill ta bort (se till vänster om inlägget).");
+                            }
+                            else
+                            {
+                                WriteLine("Du måste ange ett korrekt nummer på inlägget du vill ta bort (se till vänster om inlägget).");
+                                WriteLine("Tryck på valfri tangent för att återgå till huvudmenyn.");
+                                ReadKey();
+                            }
                         }
                     }
                     else if (input == "3")
@@ -103,12 +108,19 @@ namespace GuestbookApp
                         Clear();
                         WriteLine("Programmet avslutas.");
                         appRunning = false;
-
+                    }
+                    else
+                    {
+                        WriteLine("Ogiltigt val, välj 1, 2 eller 3.");
                     }
                 }
                 catch (ArgumentNullException ex)
                 {
                     WriteLine($"Det uppstod ett fel. Felet beror på: {ex.Message}");
+                }
+                catch (Exception ex)
+                {
+                    WriteLine($"Ett fel inträffade: {ex.Message}");
                 }
             }
         }
