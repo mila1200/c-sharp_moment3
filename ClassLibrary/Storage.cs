@@ -1,4 +1,4 @@
-//för att JsonConvert ska fungera
+//för att JsonConvert ska fungera, Newtonsoft rekommenderas av boken.
 using Newtonsoft.Json;
 
 namespace GuestbookApp

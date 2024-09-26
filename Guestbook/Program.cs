@@ -1,4 +1,5 @@
 ﻿using static System.Console;
+using System.Collections;
 
 namespace GuestbookApp
 {
@@ -8,10 +9,10 @@ namespace GuestbookApp
         {
             GuestbookInput.guestbookInputs = Storage.LoadInputFromJson("myGuestbookInputs.json");
             //boolean för att kunna loopa applikationen
-            bool validInput = false;
+            bool appRunning = true;
 
             //while-loop för att loopa appen vid felaktig input
-            while (!validInput)
+            while (appRunning)
             {
                 try
                 {
@@ -22,11 +23,9 @@ namespace GuestbookApp
                     WriteLine($"{menu.option3}\n");
                     WriteLine($"Befintliga inlägg:");
 
-                    int index = 1;
                     foreach (var entry in GuestbookInput.guestbookInputs)
                     {
-                        WriteLine($"[{index}] {entry.Name} - {entry.UserInput}\n");
-                        index++;
+                        WriteLine($"[{entry.InputId}] {entry.Name} - {entry.UserInput}");
                     }
 
                     string? input = ReadLine();
@@ -55,17 +54,57 @@ namespace GuestbookApp
                             throw new ArgumentNullException("Du måste ange ett meddelande.");
                         }
 
-                        //lägger till namn och inlägg till listan
+                        //lägger till namn och inlägg till listan medan appen körs
                         GuestbookInput.AddInput(name, userInput);
+                        //lägger till input till den sparade filen
                         Storage.SaveInputToJson(GuestbookInput.guestbookInputs, "myGuestbookInputs.json");
+
+                        WriteLine("Inlägget är sparat. Tryck på valfri tangent för att återgå till huvudmenyn.");
+                        ReadKey();
                     }
                     else if (input == "2")
                     {
                         Clear();
-                        
+
+                        WriteLine("Befintliga inlägg:");
+
+                        foreach (var entry in GuestbookInput.guestbookInputs)
+                        {
+                            WriteLine($"[{entry.InputId}] {entry.Name} - {entry.UserInput}");
+                        }
+
+                        WriteLine("\nVänligen ange vilket inlägg du vill ta bort (numrerat till vänster om inlägget):");
+
+                        string? deleteInput = ReadLine();
+
+                        if (string.IsNullOrWhiteSpace(deleteInput))
+                        {
+                            throw new ArgumentNullException("Du måste ange ett korrekt nummer på inlägget du vill ta bort (se till vänster om inlägget).");
+                        }
+
+                        //försöker omvandla input från string till int. Om det lyckas läggs nya värdet i inputIdToDelete, annars felhantering.
+                        if (int.TryParse(deleteInput, out int inputIdToDelete))
+                        {
+                            GuestbookInput.RemoveAt(inputIdToDelete - 1);
+
+                            //sparar ner nya listan till json
+                            Storage.SaveInputToJson(GuestbookInput.guestbookInputs, "myGuestbookInputs.json");
+
+                            WriteLine($"Inlägg nummer {inputIdToDelete} är borttaget. Tryck på valfri tangent för att återgå till huvudmenyn.");
+                            ReadKey();
+                        }
+                        else
+                        {
+                            WriteLine("Du måste ange ett korrekt nummer på inlägget du vill ta bort (se till vänster om inlägget).");
+                        }
                     }
-                    //avslutar while-loop vid korrekt input
-                    validInput = true;
+                    else if (input == "3")
+                    {
+                        Clear();
+                        WriteLine("Programmet avslutas.");
+                        appRunning = false;
+
+                    }
                 }
                 catch (ArgumentNullException ex)
                 {
