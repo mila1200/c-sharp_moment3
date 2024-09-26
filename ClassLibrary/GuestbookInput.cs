@@ -1,10 +1,12 @@
 ﻿namespace GuestbookApp {
 
+//klass för att ha koll på inläggen
 public class GuestbookInput
 {
-    //för att kunna hålla koll på inläggen i listan med inputId. Börjar på 1.
+    //för att hålla koll på vilket id nästa inlägg ska få. Static för att hela den ska tillhöra hela klassen.
     public static int nextInputId = 1;
 
+    //detta och nästkommande två delar lagrar id, namn och inlägg. Properties för att få eller sätta värden.
     private int inputId;
     public int InputId
     {
@@ -37,15 +39,17 @@ public class GuestbookInput
         UserInput = userInput;
     }
 
+    //lista för att lagra nya inlägg
     public static List<GuestbookInput> guestbookInputs = new List<GuestbookInput>();
 
-    //lägger till ett inlägg till listan
+    //lägger till ett inlägg till listan med angivet namn och användarinlägg.
     public static void AddInput(string name, string userInput)
     {
         GuestbookInput nameandinput = new GuestbookInput(name, userInput);
         guestbookInputs.Add(nameandinput);
     }
 
+    //tar bort inlägg baserat på inputid.
     public static void RemoveAt(int index)
     {
         if (index >= 0 && index < guestbookInputs.Count)

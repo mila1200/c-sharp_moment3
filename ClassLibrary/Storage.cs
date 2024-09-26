@@ -3,11 +3,13 @@ using Newtonsoft.Json;
 
 namespace GuestbookApp
 {
+    //statisk klass för att kunna lagra metoder utan att behöva skapa objekt av Storage (dvs. lättare att hantera i program).
     public static class Storage
     {
         //sparar posterna till en fil, myGuestbookInputs är filnamnet.
         public static void SaveInputToJson(List<GuestbookInput> guestbookInputs, string myGuestbookInputs)
         {
+            //konverterar inlägg till Json-sträng
             string json = JsonConvert.SerializeObject(guestbookInputs);
             //skapar ny fil och sparar ner texten, skriver över om den redan finns.
             File.WriteAllText(myGuestbookInputs, json);
